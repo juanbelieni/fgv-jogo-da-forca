@@ -3,10 +3,9 @@ Módulo gráfico do jogo da forca fornecido por
 Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 """
 
-def jig_saw():
-  """ascii art do jigsaw"""
+def abertura(): #Imprime uma abertura na tela inicial do game 
   print("""
-  Você quer jogar um jogo? \n
+  Do you wanna play a game? (jogo da forca, não é jogos mortais - não pra você :D)\n
     ─────▄██▀▀▀▀▀▀▀▀▀▀▀▀▀██▄─────
     ────███───────────────███────
     ───███─────────────────███───
@@ -58,69 +57,206 @@ def jig_saw():
     ─────────────██──────────────
     """)
 
-def printa_forca(tentativas):
-
+def printa_forca(tentativas): #imprime a forca
+    # seguinte meus ursinhos carinhosos 
+    # essa função plota a forca em razão de quantas tentativas ainda  restam
+    
   erros = 6 - tentativas
 
   forca = """ 
-  ______
-        |
-        |"""
+                                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                                    
+      █                                     
+      █                                     
+      █                                 
+      █                              
+      █                              
+      █                                  
+      █                        
+      █                                   
+      █                                   
+      █                                 
+      █                                  
+      █                                    
+      █                                   
+      █                                   
+      █                                   
+      █                                  
+      █                             
+      █                                               
+      █      
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """
 
   cabeca = """ 
-        O 
-        
-        
-        """
-
+                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                                    
+      █                        
+      █                                   
+      █                                   
+      █                                 
+      █                                  
+      █                                    
+      █                                   
+      █                                   
+      █                                   
+      █                                  
+      █                             
+      █                                            
+      █                                     
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """                      
 
   tronco = """ 
-        O
-        |
-        
-        """
-        
+                                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                          @@          
+      █                          @@     
+      █                          @@          
+      █                          @@          
+      █                          @@          
+      █                          @@          
+      █                          @@          
+      █                          @@          
+      █                          @@          
+      █                              
+      █                                   
+      █                              
+      █                                               
+      █                                      
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """    
+
   braco_esquerdo = """ 
-        O
-       /|
-        
-        """
+                                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                          @@          
+      █                          @@     
+      █                        @;@@          
+      █                       @  @@          
+      █                      @   @@          
+      █                     @    @@          
+      █                          @@          
+      █                          @@                  
+      █                          @@          
+      █                              
+      █                                   
+      █                              
+      █                                              
+      █                                      
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """ 
 
   braco_direito = """ 
-        O
-       /|\
-        
-         
-        """
+                                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                          @@          
+      █                          @@     
+      █                        @;@@;@          
+      █                       @  @@  @        
+      █                      @   @@   @       
+      █                     @    @@    @      
+      █                          @@          
+      █                          @@          
+      █                          @@                  
+      █                              
+      █                                   
+      █                              
+      █                                               
+      █                                  
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """ 
+
+
 
   perna_esquerda = """ 
-        O
-       /|\ 
-       /  
-        """
-      
+                                                                
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                          @@          
+      █                          @@     
+      █                        @;@@;@          
+      █                       @  @@  @        
+      █                      @   @@   @       
+      █                     @    @@    @      
+      █                          @@          
+      █                          @@                   
+      █                         @@@@          
+      █                        @@     
+      █                       @@           
+      █                      @@       
+      █                     @@                      
+      █                                  
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """   
+
   perna_direita = """ 
-        O
-       /|\ 
-       / \ """
+                                                        
+      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
+      █                          |          
+      █                          |           
+      █                          |           
+      █                        @@@@@@         
+      █                       @@@@@@@@       
+      █                        @@@@@@        
+      █                          @@          
+      █                          @@     
+      █                        @;@@;@          
+      █                       @  @@  @        
+      █                      @   @@   @       
+      █                     @    @@    @
+      █                          @@ 
+      █                          @@
+      █                         @@@@          
+      █                        @@  @@   
+      █                       @@    @@       
+      █                      @@      @@ 
+      █                     @@        @@            
+      █                                  
+      █                                      
+▀▀▀▀▀▀▀▀▀▀▀▀▀                         
+    """      
 
-  parte_corpo = [cabeca, tronco, braco_esquerdo, braco_direito, perna_esquerda, perna_direita]
+  parte_corpo = [forca, cabeca, tronco, braco_esquerdo, braco_direito, perna_esquerda, perna_direita]
 
-  if erros == 0 :
-    imagem = (forca)
-  elif erros == 1 : 
-    imagem = (forca + parte_corpo[0])
-  elif erros == 2 :
-    imagem = (forca + parte_corpo[1])
-  elif erros == 3 :
-    imagem = (forca + parte_corpo[2])
-  elif erros == 4 :
-   imagem = (forca + parte_corpo[3])
-  elif erros == 5 :
-    imagem = (forca + parte_corpo[4])
-  elif erros == 6 :
-    imagem = (forca + parte_corpo[5])
-  else :
-   imagem = ("ERRO")
+  if erros > 6:
+    print("Erro: número de erros é maior que 6")
 
-  print(imagem)
+  print(parte_corpo[erros])

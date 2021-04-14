@@ -4,31 +4,31 @@ Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 """
 
 import random
+import sys
+
+
+def comecar_jogo():
+  jogar = int(input("Você quer jogar forca? Insira 1 para jogar ou 0 para sair: "))
+
+  if(jogar == 1):
+    print("Você tem 6 chances para acertar!")
+  else:
+    print("Então deixa para próxima! Até mais :)")
+    sys.exit()
+
 
 def esconder_palavra(palavra_secreta):
   '''Retorna um string de underline de mesmo tamanho da palavra secreta'''
   return("_" * len(palavra_secreta))
 
-def revelar_letras(palavra_escondida, palavra_secreta, tentativas, letra):
+def revelar_letras(palavra_escondida, palavra_secreta, letra):
   '''Retorna a palavra escondida com as letras reveladas'''
   i = 0
-  acertos = 0
-  auxiliador = palavra_escondida
   while  (i < len(palavra_secreta)):
     if(palavra_secreta[i] == letra):
       palavra_escondida = palavra_escondida[:i] + letra + palavra_escondida[i + 1:]
-      acertos += 1
     i += 1
-  if(acertos > 0):
-    print(f"Parabéns! Você acertou {acertos} letra(s)!")
-    if(auxiliador == palavra_escondida):
-      print("Mas, pela falta de atenção na repetição das letras, perdeu uma chance S2")
-      tentativas -= 1
-      print(f"Agora você tem {tentativas} tentativas")
-  else:
-    print("Infelizmente, não houve acertos :(")
-    tentativas -= 1
-    print(f"Agora você tem {tentativas} chances")
+
   return palavra_escondida
 
 def escolher_palavra():
