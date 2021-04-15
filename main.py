@@ -9,36 +9,51 @@
 Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 """
 
-from logica import escolher_palavra, revelar_letras, esconder_palavra, comecar_jogo
-from grafico import printa_forca, abertura
+from logica import escolher_palavra, esconder_palavra
 
+from grafico import abertura, revelar_letras, printa_forca, ganhou, perdeu, limpa_tela, tela_final
+
+limpa_tela()
 abertura()
-comecar_jogo()
+limpa_tela()
 
 while True:
-  palavra_secreta = escolher_palavra()
-  palavra_escondida = esconder_palavra(palavra_secreta)
+    palavra_secreta = escolher_palavra()
+    palavra_escondida = esconder_palavra(palavra_secreta)
 
-  tentativas = 6
+    tentativas = 6
 
-  while(tentativas != 0):
-   
-    letra = input("\nInsira uma letra: ")
 
-    auxiliador = palavra_escondida
-    palavra_escondida = revelar_letras(palavra_escondida, palavra_secreta, letra)
-    print(palavra_secreta, palavra_escondida)
+    while (tentativas != 0):
+        limpa_tela()
+        printa_forca(tentativas)
+        print(palavra_escondida)
 
-    if(auxiliador == palavra_escondida):
-      tentativas -= 1
+        letra = input("\nInsira uma letra: ")
+        limpa_tela()
+        auxiliador = palavra_escondida
+        palavra_escondida = revelar_letras(palavra_escondida, palavra_secreta, letra)
 
-    printa_forca(tentativas)
+        if (auxiliador == palavra_escondida):
+            tentativas -= 1
 
-    if "_" not in palavra_escondida:
-      print("\nVocê ganhou! \°/")
-      break;
+        if "_" not in palavra_escondida:
+            limpa_tela()
+            ganhou(palavra_secreta)
+            #input("Digite enter para continuar...")
+            break
 
-    if tentativas <= 0:
-      print(f"\nVocê perdeu! A palavra era {palavra_secreta}.")
+        if tentativas <= 0:
+          printa_forca(tentativas)
+          perdeu(palavra_secreta) 
+          break
 
-  comecar_jogo()
+          #input("Digite enter para continuar...")
+
+    continuar = input("Você quer continuar? Insira 1 para jogar ou 0 para sair: ")
+
+    if continuar != "1" :
+      limpa_tela() 
+      tela_final()
+      #input("Digite enter para continuar...")
+      break

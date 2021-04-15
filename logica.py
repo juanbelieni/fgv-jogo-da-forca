@@ -4,18 +4,6 @@ Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 """
 
 import random
-import sys
-
-
-def comecar_jogo():
-  jogar = int(input("Você quer jogar forca? Insira 1 para jogar ou 0 para sair: "))
-
-  if(jogar == 1):
-    print("Você tem 6 chances para acertar!")
-  else:
-    print("Então deixa para próxima! Até mais :)")
-    sys.exit()
-
 
 def esconder_palavra(palavra_secreta):
   '''Retorna um string de underline de mesmo tamanho da palavra secreta'''
