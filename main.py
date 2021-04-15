@@ -9,9 +9,9 @@
 Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 """
 
-from logica import escolher_palavra, esconder_palavra
+from logica import escolher_palavra, esconder_palavra, revelar_letras
 
-from grafico import abertura, revelar_letras, printa_forca, ganhou, perdeu, limpa_tela, tela_final
+from grafico import abertura, printa_forca, ganhou, perdeu, limpa_tela, tela_final
 
 limpa_tela()
 abertura()

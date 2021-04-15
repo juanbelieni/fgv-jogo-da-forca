@@ -1,11 +1,19 @@
 """
-Módulo gráfico do jogo da forca fornecido por
+       __                         __         ______                     
+      / /___  ____ _____     ____/ /___ _   / ____/___  ______________ _
+ __  / / __ \/ __ `/ __ \   / __  / __ `/  / /_  / __ \/ ___/ ___/ __ `/
+/ /_/ / /_/ / /_/ / /_/ /  / /_/ / /_/ /  / __/ / /_/ / /  / /__/ /_/ / 
+\____/\____/\__, /\____/   \__,_/\__,_/  /_/    \____/_/   \___/\__,_/  
+           /____/ 
+
 Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
+
+Módulo gráfico do jogo da forca
 """
 import os 
 
-def abertura(): #Imprime uma abertura na tela inicial do game 
-
+def abertura(): 
+  '''Tela de abertura simples, onde o usuário deve dar ENTER para continuar.'''
   print("""
   Do you wanna play a game? (não é jogos mortais - não pra você)\n
                 ─────▄██▀▀▀▀▀▀▀▀▀▀▀▀▀██▄─────
@@ -60,9 +68,8 @@ def abertura(): #Imprime uma abertura na tela inicial do game
     """)
   input("Digite enter para continuar...")
 
-def printa_forca(tentativas): #imprime a forca
-    # seguinte meus ursinhos carinhosos 
-    # essa função plota a forca em razão de quantas tentativas ainda restam
+def printa_forca(tentativas: int):
+  '''Imprime na tela a forca com base no número de tentativas. O número de tentativas deve ser um inteiro que varia de 0 a 6.'''
     
   erros = 6 - tentativas
 
@@ -266,16 +273,8 @@ def printa_forca(tentativas): #imprime a forca
 
   print(parte_corpo[erros])
 
-def revelar_letras(palavra_escondida, palavra_secreta, letra): #Retorna a palavra escondida com as letras reveladas
-  i = 0
-  while  (i < len(palavra_secreta)):
-    if(palavra_secreta[i] == letra):
-      palavra_escondida = palavra_escondida[:i] + letra + palavra_escondida[i + 1:]
-    i += 1
-
-  return palavra_escondida
-
-def ganhou(palavra_secreta): #imprime quando ganhar
+def ganhou(palavra_secreta: str):
+  '''Imprime na tela uma mensagem de vitória, com base na palavra original.'''
   print(""" Parabéns! Você conseguiu :)\n
 
   __   __ _____  _   _     _    _  _____  _   _ 
@@ -287,7 +286,8 @@ def ganhou(palavra_secreta): #imprime quando ganhar
     """)
   print(f"\nA palavra era {palavra_secreta}\n\n")
 
-def perdeu(palavra_secreta): #imprime quando perder
+def perdeu(palavra_secreta: str):
+  '''Imprime na tela uma mensagem de derrota, com base na palavra original.'''
   print("\nVocê matou o bonequinho")
   print("""
   __   _______ _   _   _     _____ _____ _____ 
@@ -299,20 +299,20 @@ def perdeu(palavra_secreta): #imprime quando perder
 
   print(f"\nA palavra era {palavra_secreta}\n\n")
 
-def limpa_tela(): #limpa a tela e imprime o titulo do jogo
+def limpa_tela():
+  '''Limpa totalmente a tela, e imprime a logo do jogo em cima.'''
   os.system("clear")
   print("""
-  
-   |  _  _  _    _| _    |` _  _ _ _ 
- |_| (_)(_|(_)  (_|(_|   | (_)| (_(_|
-         _|                          
+       __                         __         ______                     
+      / /___  ____ _____     ____/ /___ _   / ____/___  ______________ _
+ __  / / __ \/ __ `/ __ \   / __  / __ `/  / /_  / __ \/ ___/ ___/ __ `/
+/ /_/ / /_/ / /_/ / /_/ /  / /_/ / /_/ /  / __/ / /_/ / /  / /__/ /_/ / 
+\____/\____/\__, /\____/   \__,_/\__,_/  /_/    \____/_/   \___/\__,_/  
+           /____/                          
   """)
 
-def printa_letras_inseridas(letras_inseridas): #imprime letras inseridas
-  """
-  aqui voce entra com uma lista cuja cada posição corresponde a uma lista inserida pelo usuário
-  Dessa forma, 
-  """
+def printa_letras_inseridas(letras_inseridas: list):
+  '''Imprime as letra inseridas pelo usuário.'''
 
   quantidade_de_letras = len(letras_inseridas)
 
@@ -323,10 +323,12 @@ def printa_letras_inseridas(letras_inseridas): #imprime letras inseridas
 
   print("\n")
   
-def printa_falso_acerto(): #pro caso em que o usuario acerta mas ja tinha entrado com aquela letra
+def printa_falso_acerto():
+  '''Imprime na tela uma mensagem para o evento onde o usuário digita uma letra certa que ja foi anteriormente digitada.'''
   print("Bom... errado você não está. Mas essa letra já foi escolhida anteriormente e você perdeu essa tentativa :D")
 
-def tela_final(): #tela de encerramento :)
+def tela_final():
+  '''Tela de encerramento do jogo'''
   print("""
     Foi bom enquanto durou!
 
