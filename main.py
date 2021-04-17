@@ -6,54 +6,58 @@
 \____/\____/\__, /\____/   \__,_/\__,_/  /_/    \____/_/   \___/\__,_/  
            /____/     
 
-Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
+Grupo 7: 
+Carlos Alberto de Souza Moreira Junior (B39056)
+Juan Belieni de Castro Araujo (B43904)
+Lucas Westfal (B43881)
+Nicole dos Santos de Souza (B43888)
+Yasmin Pádua Lugão (B44008)
+
+Módulo principal do jogo da forca.
 """
 
 from logica import escolher_palavra, esconder_palavra, revelar_letras
 
-from grafico import abertura, printa_forca, ganhou, perdeu, limpa_tela, tela_final
-
-limpa_tela()
-abertura()
-limpa_tela()
+from grafico import inicio, forca, ganhou
 
 while True:
-    palavra_secreta = escolher_palavra()
-    palavra_escondida = esconder_palavra(palavra_secreta)
+  letras_certas = ""
+  letras_erradas = ""
 
-    tentativas = 6
+  palavra_secreta = escolher_palavra()
+  palavra_escondida = esconder_palavra(palavra_secreta)
 
+  tentativas = 6
 
-    while (tentativas != 0):
-        limpa_tela()
-        printa_forca(tentativas)
-        print(palavra_escondida)
+  inicio()
 
-        letra = input("\nInsira uma letra: ")
-        limpa_tela()
-        auxiliador = palavra_escondida
-        palavra_escondida = revelar_letras(palavra_escondida, palavra_secreta, letra)
+  while (tentativas != 0):
+    forca(6 - tentativas, letras_erradas, palavra_secreta)
+    print(palavra_escondida)
 
-        if (auxiliador == palavra_escondida):
-            tentativas -= 1
+    letra = input("\nInsira uma letra: ")[0]
 
-        if "_" not in palavra_escondida:
-            limpa_tela()
-            ganhou(palavra_secreta)
-            #input("Digite enter para continuar...")
-            break
+    auxiliador = palavra_escondida
+    palavra_escondida = revelar_letras(palavra_escondida, palavra_secreta, letra)
 
-        if tentativas <= 0:
-          printa_forca(tentativas)
-          perdeu(palavra_secreta) 
-          break
+    if (auxiliador == palavra_escondida):
+      tentativas -= 1
+      if letra not in letras_erradas and letra not in letras_certas:
+        letras_erradas += letra
+    else:
+      letras_certas += letra
 
-          #input("Digite enter para continuar...")
-
-    continuar = input("Você quer continuar? Insira 1 para jogar ou 0 para sair: ")
-
-    if continuar != "1" :
-      limpa_tela() 
-      tela_final()
-      #input("Digite enter para continuar...")
+    if "_" not in palavra_escondida:
+      print()
+      print(palavra_secreta)
+      ganhou()
       break
+
+    if tentativas <= 0:
+      forca(6 - tentativas, letras_erradas, palavra_secreta)
+      break
+
+  continuar = input("Você quer continuar? Insira 1 para jogar ou 0 para sair: ")
+
+  if continuar != "1" :
+    break

@@ -284,7 +284,6 @@ alfaia
 alferes
 alforge
 alga
-álgebra
 algema
 algo
 algoz
@@ -2714,7 +2713,7 @@ escalão
 escalar
 escama
 escapar
-escape
+escarpaescape
 escarpa
 escasso
 escavar

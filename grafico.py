@@ -1,352 +1,210 @@
-"""
-       __                         __         ______                     
-      / /___  ____ _____     ____/ /___ _   / ____/___  ______________ _
- __  / / __ \/ __ `/ __ \   / __  / __ `/  / /_  / __ \/ ___/ ___/ __ `/
-/ /_/ / /_/ / /_/ / /_/ /  / /_/ / /_/ /  / __/ / /_/ / /  / /__/ /_/ / 
-\____/\____/\__, /\____/   \__,_/\__,_/  /_/    \____/_/   \___/\__,_/  
-           /____/ 
+# Membros do grupo:
+'''
+Bernardo Vargas (B37182);
+Fernanda Durão (B43662);
+João Pedro Menezes (B44431);
+Maria Fernanda Machado (B43991);
+Victor Caldas (B33012).
+'''
 
-Grupo: Juan, Lucas, Yasmin, Nicole e Carlos
 
-Módulo gráfico do jogo da forca
-"""
-import os 
+# Para importar o módulo, armazene-o no mesmo diretório que o seu programa
+# e escreva no seu código:
 
-def abertura(): 
-  '''Tela de abertura simples, onde o usuário deve dar ENTER para continuar.'''
-  print("""
-  Do you wanna play a game? (não é jogos mortais - não pra você)\n
-                ─────▄██▀▀▀▀▀▀▀▀▀▀▀▀▀██▄─────
-                ────███───────────────███────
-                ───███─────────────────███───
-                ──███───▄▀▀▄─────▄▀▀▄───███──
-                ─████─▄▀────▀▄─▄▀────▀▄─████─
-                ─████──▄████─────████▄──█████
-                █████─██▓▓▓██───██▓▓▓██─█████
-                █████─██▓█▓██───██▓█▓██─█████
-                █████─██▓▓▓█▀─▄─▀█▓▓▓██─█████
-                ████▀──▀▀▀▀▀─▄█▄─▀▀▀▀▀──▀████
-                ███─▄▀▀▀▄────███────▄▀▀▀▄─███
-                ███──▄▀▄─█──█████──█─▄▀▄──███
-                ███─█──█─█──█████──█─█──█─███
-                ███─█─▀──█─▄█████▄─█──▀─█─███
-                ███▄─▀▀▀▀──█─▀█▀─█──▀▀▀▀─▄███
-                ████─────────────────────████
-                ─███───▀█████████████▀───████
-                ─███───────█─────█───────████
-                ─████─────█───────█─────█████
-                ───███▄──█────█────█──▄█████─
-                ─────▀█████▄▄███▄▄█████▀─────
-                ──────────█▄─────▄█──────────
-                ──────────▄█─────█▄──────────
-                ───────▄████─────████▄───────
-                ─────▄███████───███████▄─────
-                ───▄█████████████████████▄───
-                ─▄███▀───███████████───▀███▄─
-                ███▀─────███████████─────▀███
-                ▌▌▌▌▒▒───███████████───▒▒▐▐▐▐
-                ─────▒▒──███████████──▒▒─────
-                ──────▒▒─███████████─▒▒──────
-                ───────▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒───────
-                ─────────████░░█████─────────
-                ────────█████░░██████────────
-                ──────███████░░███████───────
-                ─────█████──█░░█──█████──────
-                ─────█████──████──█████──────
-                ──────████──████──████───────
-                ──────████──████──████───────
-                ──────████───██───████───────
-                ──────████───██───████───────
-                ──────████──████──████───────
-                ─██────██───████───██─────██─
-                ─██───████──████──████────██─
-                ─███████████████████████████─
-                ─██─────────████──────────██─
-                ─██─────────████──────────██─
-                ────────────████─────────────
-                ─────────────██──────────────
-    """)
-  input("Digite enter para continuar...")
+# from Bernardo_Fernanda_Joao_Maria_Victor.py import forca
 
-def printa_forca(tentativas: int):
-  '''Imprime na tela a forca com base no número de tentativas. O número de tentativas deve ser um inteiro que varia de 0 a 6.'''
+# Parâmetros:
+# quantidade_erros --> (int) quantidade de letras erradas que o jogador supôs
+# letras_erradas --> (str) as letras que o jogador supôs errado
+# resposta --> (str) a palavra secreta
+
+# Desenha a forca de acordo com o número de erros do jogador 
+
+def inicio():
+    print('''
+      __                                __             ___
+     | |   ___     __ _    ___       __| |   __ _     / _|   ___    _ __    ___    __ _ 
+  _  | |  / _ \   / _` |  / _ \     / _` |  / _` |   | |_   / _ \  | '__|  / __|  / _` |
+ | |_| | | (_) | | (_| | | (_) |   | (_| | | (_| |   |  _| | (_) | | |    | (__  | (_| |
+  \___/   \___/   \__, |  \___/     \__,_|  \__,_|   |_|    \___/  |_|     \___|  \__,_|
+                  |___/                                                                                       
+          ''')
+
+def forca(quantidade_erros, letras_erradas, resposta): 
+    cabeca = ""
+    tronco = ""
+    pernas = ""
     
-  erros = 6 - tentativas
+    # Apenas desenha a forca vazia enquanto o jogador não erra
+    if quantidade_erros == 0:
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Você ainda não errou nenhuma.
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Você tem 6 tentativas! 
+          | _=_==_==_|
+          |/        \|
+          ''')
+    
+    
+    # Adiciona a cabeça com 1 erro:
+    elif quantidade_erros == 1:
+        cabeca = "(_)"
+        
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Não tem a letra: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Continue! Ainda tem 5 tentativas! 
+          | _=_==_==_|
+          |/        \|
+          ''')
+        
+    # Adiciona o tronco com 2 erros:
+    elif quantidade_erros == 2:
+        cabeca = "(_)"
+        tronco = " | "
+        
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Não tem as letras: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Não desista! Ainda tem 4 tentativas! 
+          | _=_==_==_|
+          |/        \|
+          ''')
+        
+        
+    # Adiciona o braço esquerdo com 3 erros:
+    elif quantidade_erros == 3:
+        cabeca = "(_)"
+        tronco = "/| "
 
-  forca = """        
-
-
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                                    
-      █                                     
-      █                                     
-      █                                 
-      █                              
-      █                              
-      █                                  
-      █                        
-      █                                   
-      █                                   
-      █                                 
-      █                                  
-      █                                    
-      █                                   
-      █                                   
-      █                                   
-      █                                  
-      █                             
-      █                                               
-      █      
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """
-
-  cabeca = """ 
-  
-
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @@@@@@@@       
-      █                        @@@@@@        
-      █                                    
-      █                        
-      █                                   
-      █                                   
-      █                                 
-      █                                  
-      █                                    
-      █                                   
-      █                                   
-      █                                   
-      █                                  
-      █                             
-      █                                            
-      █                                     
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """                      
-
-  tronco = """ 
-                                                                
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @@@@@@@@       
-      █                        @@@@@@        
-      █                          @@          
-      █                          @@     
-      █                          @@          
-      █                          @@          
-      █                          @@          
-      █                          @@          
-      █                          @@          
-      █                          @@          
-      █                          @@          
-      █                              
-      █                                   
-      █                              
-      █                                               
-      █                                      
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """    
-
-  braco_esquerdo = """
-                                                                
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @@@@@@@@       
-      █                        @@@@@@        
-      █                          @@          
-      █                          @@     
-      █                        @;@@          
-      █                       @  @@          
-      █                      @   @@          
-      █                     @    @@          
-      █                          @@          
-      █                          @@                  
-      █                          @@          
-      █                              
-      █                                   
-      █                              
-      █                                              
-      █                                      
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """ 
-
-  braco_direito = """ 
-                                                                
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @@@@@@@@       
-      █                        @@@@@@        
-      █                          @@          
-      █                          @@     
-      █                        @;@@;@          
-      █                       @  @@  @        
-      █                      @   @@   @       
-      █                     @    @@    @      
-      █                          @@          
-      █                          @@          
-      █                          @@                  
-      █                              
-      █                                   
-      █                              
-      █                                               
-      █                                  
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """ 
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Não tem as letras: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Você consegue! Ainda tem 3 tentativas! 
+          | _=_==_==_|
+          |/        \|
+          ''')
 
 
+        
+    # Adiciona o braço direito com 4 erros:
+    elif quantidade_erros == 4:
+        cabeca = "(_)"
+        tronco = "/|\ "
+        
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          |||{chr(9)}{tronco}{chr(9)*2}Não tem as letras: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Ainda há tempo! Você tem 2 tentativas! 
+          | _=_==_==_|
+          |/        \|
+          ''')        
+        
+    # Adiciona a perna esquerda com 5 erros:
+    elif quantidade_erros == 5:
+        cabeca = "(_)"
+        tronco = "/|\ "
+        pernas = "/"
 
-  perna_esquerda = """ 
-                                                                
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @@@@@@@@       
-      █                        @@@@@@        
-      █                          @@          
-      █                          @@     
-      █                        @;@@;@          
-      █                       @  @@  @        
-      █                      @   @@   @       
-      █                     @    @@    @      
-      █                          @@          
-      █                          @@                   
-      █                         @@@@          
-      █                        @@     
-      █                       @@           
-      █                      @@       
-      █                     @@                      
-      █                                  
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """   
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tem {len(resposta)} letras. 
+          |||//{chr(9)} |
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Não tem as letras: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Respire... você só tem 1 tentativa! 
+          | _=_==_==_|
+          |/        \|
+          ''')
+        
+    # Adiciona a perna direita com 6 erros: 
+    elif quantidade_erros == 6:
+        cabeca = "(_)"
+        tronco = "/|\ "
+        pernas = "/ \ "
 
-  perna_direita = """ 
-                                                        
-      █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐        
-      █                          |          
-      █                          |           
-      █                          |           
-      █                        @@@@@@         
-      █                       @ X  X @       
-      █                        @@@@@@        
-      █                          @@          
-      █                          @@     
-      █                        @;@@;@          
-      █                       @  @@  @        
-      █                      @   @@   @       
-      █                     @    @@    @
-      █                          @@ 
-      █                          @@
-      █                         @@@@          
-      █                        @@  @@   
-      █                       @@    @@       
-      █                      @@      @@ 
-      █                     @@        @@            
-      █                                  
-      █                                      
-▀▀▀▀▀▀▀▀▀▀▀▀▀                         
-    """      
+        # Desenha a forca: 
+        print(f'''
+          .___________.
+          | ;_=_=_=_=_|{chr(9)*2}A resposta tinha {len(resposta)} letras. 
+          |||//{chr(9)} |{chr(9)*2}
+          |  /{chr(9)}{cabeca}
+          | |{chr(9)}{tronco}{chr(9)*2}Não tinha as letras: {letras_erradas}
+          |||{chr(9)}{pernas}
+          | |
+          |||________,{chr(9)*2}Oh, não! Você matou nosso amiguinho! 
+          | _=_==_==_|
+          |/        \|
+          
+          	
+{chr(9)*2}         _,.-------.,_
+{chr(9)*2}     ,;~'             '~;,
+{chr(9)*2}   ,;                     ;,
+{chr(9)*2}  ;                         ;
+{chr(9)*2} ,'                         ',    ----------------
+{chr(9)*2},;                           ;,  |              -----------
+{chr(9)*2}; ;      .           .      ; ;  |                      -----
+{chr(9)*2}| ;   ______       ______   ; |  |
+{chr(9)*2}|  `/~"     ~" . "~     "~ \'  |  | 
+{chr(9)*2}|  ~  ,-~~~^~, | ,~^~~~-,  ~  |  |     A RESPOSTA ERA
+{chr(9)*2} |   |        |:|        |   |   |         {resposta}
+{chr(9)*2} |   l       / | \       !   |   |  
+{chr(9)*2} .~  (__,.--" .^. "--.,__)  ~.   |                ++++++++   
+{chr(9)*2} |     ---;' / | \ `;---     |   |         ++++++++    
+{chr(9)*2}  \__.       \/^\/       .__/    |  ++++++++      
+{chr(9)*2}   V| \                 / |V     | /        
+{chr(9)*2}    | |T~\___!___!___/~T| |      |/
+{chr(9)*2}    | |`IIII_I_I_I_IIII'| |
+{chr(9)*2}    |  \,III I I I III,/  |
+{chr(9)*2}     \   `~~~~~~~~~~'    /
+{chr(9)*2}       \   .       .   /    
+{chr(9)*2}         \.    ^    ./
+{chr(9)*2}           ^~~~^~~~^     
+          ''')            
 
-  parte_corpo = [forca, cabeca, tronco, braco_esquerdo, braco_direito, perna_esquerda, perna_direita]
 
-  if erros > 6:
-    print("Erro: número de erros é maior que 6")
-
-  print(parte_corpo[erros])
-
-def ganhou(palavra_secreta: str):
-  '''Imprime na tela uma mensagem de vitória, com base na palavra original.'''
-  print(""" Parabéns! Você conseguiu :)\n
-
-  __   __ _____  _   _     _    _  _____  _   _ 
-  \ \ / /|  _  || | | |   | |  | ||_   _|| \ | |
-   \ V / | | | || | | |   | |  | |  | |  |  \| |
-    \ /  | | | || | | |   | |/\| |  | |  | . ` |
-    | |  \ \_/ /| |_| |   \  /\  / _| |_ | |\  |
-    \_/   \___/  \___/     \/  \/  \___/ \_| \_/
-    """)
-  print(f"\nA palavra era {palavra_secreta}\n\n")
-
-def perdeu(palavra_secreta: str):
-  '''Imprime na tela uma mensagem de derrota, com base na palavra original.'''
-  print("\nVocê matou o bonequinho")
-  print("""
-  __   _______ _   _   _     _____ _____ _____ 
-  \ \ / /  _  | | | | | |   |  _  /  ___|  ___|
-   \ V /| | | | | | | | |   | | | \ `--.| |__  
-    \ / | | | | | | | | |   | | | |`--. \  __| 
-    | | \ \_/ / |_| | | |___\ \_/ /\__/ / |___ 
-    \_/  \___/ \___/  \_____/\___/\____/\____/ """)
-
-  print(f"\nA palavra era {palavra_secreta}\n\n")
-
-def limpa_tela():
-  '''Limpa totalmente a tela, e imprime a logo do jogo em cima.'''
-  os.system("clear")
-  print("""
-       __                         __         ______                     
-      / /___  ____ _____     ____/ /___ _   / ____/___  ______________ _
- __  / / __ \/ __ `/ __ \   / __  / __ `/  / /_  / __ \/ ___/ ___/ __ `/
-/ /_/ / /_/ / /_/ / /_/ /  / /_/ / /_/ /  / __/ / /_/ / /  / /__/ /_/ / 
-\____/\____/\__, /\____/   \__,_/\__,_/  /_/    \____/_/   \___/\__,_/  
-           /____/                          
-  """)
-
-def printa_letras_inseridas(letras_inseridas: list):
-  '''Imprime as letra inseridas pelo usuário.'''
-
-  quantidade_de_letras = len(letras_inseridas)
-
-  print("Letras inseridas: ", end = '')
-
-  for posicao in range(0, quantidade_de_letras):
-    print(letras_inseridas[posicao], end = ", ")
-
-  print("\n")
-  
-def printa_falso_acerto():
-  '''Imprime na tela uma mensagem para o evento onde o usuário digita uma letra certa que ja foi anteriormente digitada.'''
-  print("Bom... errado você não está. Mas essa letra já foi escolhida anteriormente e você perdeu essa tentativa :D")
-
-def tela_final():
-  '''Tela de encerramento do jogo'''
-  print("""
-    Foi bom enquanto durou!
-
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-  ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░
-  ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░
-  ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░
-  ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░
-  ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░
-  ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░
-  ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░
-  ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░
-  ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░
-  ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░
-  ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░
-  ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░
-  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-    nyan cat está orgulhoso com
-    a sua perspicácia!
-  """)
+def ganhou():
+    print('''
+           ____________      
+          '._==_==_=_.'     
+          .-\\:      /-.    Você ganhou! Obrigada
+         | (|:.     |) |    por jogar <3
+          '-|:.     |-'     
+            \\::.    /      
+             '::. .'        
+               ) (          
+             _.' '._        
+            '-------'
+            ''')
